@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>我的个人简介</title>
+    <style>
+        /* 全局样式重置 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        /* 导航栏样式 */
+        nav {
+            background-color: #333;
+            padding: 15px 0;
+            position: sticky; /* 导航栏固定在顶部 */
+            top: 0;
+            z-index: 100; /* 确保在其他元素上方 */
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: center; /* 导航项水平居中 */
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none; /* 去掉下划线 */
+            margin: 0 20px;
+            font-size: 18px;
+            transition: color 0.3s; /* 颜色变化动画 */
+        }
+
+        nav a:hover {
+            color: #3498db; /* 鼠标悬停时变色 */
+        }
+
+        /* 通用容器样式 */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* 个人信息区 */
+        .profile-header {
+            display: flex; /* 头像和文字左右排列 */
+            align-items: center; /* 垂直居中 */
+            gap: 30px; /* 元素间距 */
+            margin-bottom: 60px;
+        }
+
+        .avatar {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%; /* 圆形头像 */
+            object-fit: cover; /* 图片自适应裁剪 */
+            border: 5px solid #3498db;
+        }
+
+        .profile-info h1 {
+            font-size: 36px;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .profile-info p {
+            font-size: 18px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* 技能区样式 */
+        .section-title {
+            font-size: 28px;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #3498db;
+        }
+
+        .skills-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* 两列布局 */
+            gap: 20px;
+        }
+
+        .skill-item {
+            margin-bottom: 15px;
+        }
+
+        .skill-name {
+            display: flex;
+            justify-content: space-between; /* 技能名和百分比左右对齐 */
+            margin-bottom: 5px;
+        }
+
+        .skill-bar {
+            height: 10px;
+            background-color: #eee;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background-color: #3498db;
+            border-radius: 5px;
+        }
+
+        /* 经历区样式（时间线） */
+        .timeline {
+            position: relative;
+            margin: 30px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 4px;
+            background-color: #3498db; /* 时间线竖线 */
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 40px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: white;
+            border: 4px solid #3498db; /* 时间点 */
+        }
+
+        .timeline-date {
+            color: #3498db;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        /* 联系区样式 */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .contact-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .contact-form textarea {
+            height: 150px;
+            resize: vertical; /* 允许垂直调整大小 */
+        }
+
+        .submit-btn {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .submit-btn:hover {
+            background-color: #2980b9;
+        }
+
+        /* 页脚样式 */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 60px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav>
+        <div class="nav-container">
+            <a href="#home">首页</a>
+            <a href="#skills">技能</a>
+            <a href="#experience">经历</a>
+            <a href="#contact">联系我</a>
+        </div>
+    </nav>
+
+    <!-- 个人信息区 -->
+    <div id="home" class="container">
+        <div class="profile-header">
+            <img src="https://picsum.photos/200/200" alt="个人头像" class="avatar">
+            <div class="profile-info">
+                <h1>张三</h1>
+                <p>前端开发爱好者 | 正在学习HTML、CSS和JavaScript</p>
+                <p>我是一名编程初学者，喜欢通过实践来学习新知识。目前正在系统学习网页开发，希望未来能成为一名优秀的前端工程师。</p>
+                <p>除了编程，我还喜欢阅读、跑步和旅行。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 技能区 -->
+    <div id="skills" class="container">
+        <h2 class="section-title">我的技能</h2>
+        <div class="skills-list">
+            <div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>HTML</span>
+                        <span>80%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 80%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>CSS</span>
+                        <span>60%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 60%"></div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>JavaScript</span>
+                        <span>30%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 30%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>UI设计</span>
+                        <span>50%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 50%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 经历区 -->
+    <div id="experience" class="container">
+        <h2 class="section-title">我的经历</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-date">2023年9月 - 至今</div>
+                <h3>学习HTML和CSS</h3>
+                <p>系统学习网页开发基础知识，掌握了HTML标签、CSS样式和布局技巧，能够独立制作简单的静态网页。</p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">2023年6月 - 2023年8月</div>
+                <h3>接触编程</h3>
+                <p>开始对编程产生兴趣，学习了基本的计算机知识和编程概念，尝试编写简单的代码。</p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">2020年9月 - 2024年6月</div>
+                <h3>大学学习</h3>
+                <p>就读于某大学计算机相关专业，学习了数据结构、计算机网络等基础课程。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 联系区 -->
+    <div id="contact" class="container">
+        <h2 class="section-title">联系我</h2>
+        <form class="contact-form" action="#" method="get">
+            <div class="form-group">
+                <label for="name">你的名字</label>
+                <input type="text" id="name" name="name" placeholder="请输入你的名字">
+            </div>
+            <div class="form-group">
+                <label for="email">邮箱</label>
+                <input type="email" id="email" name="email" placeholder="请输入你的邮箱">
+            </div>
+            <div class="form-group">
+                <label for="message">留言</label>
+                <textarea id="message" name="message" placeholder="请输入你想对我说的话"></textarea>
+            </div>
+            <button type="submit" class="submit-btn">发送消息</button>
+        </form>
+    </div>
+
+    <!-- 页脚 -->
+    <footer>
+        <p>© 2023 我的个人简介 | 用HTML和CSS制作</p>
+    </footer>
+</body>
+</html>

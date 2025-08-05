@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>带样式的表单</title>
+    <!-- 内部样式表：所有CSS写在<style>里 -->
+    <style>
+        /* 1. 元素选择器：选中所有h1标签 */
+        h1 {
+            color: #2c3e50; /* 标题颜色（深蓝灰色） */
+            text-align: center; /* 文字居中 */
+        }
+
+        /* 2. 元素选择器：选中所有p标签 */
+        p {
+            font-size: 16px; /* 文字大小 */
+            line-height: 1.5; /* 行高（行间距） */
+        }
+
+        /* 3. 类选择器：选中class为"form-group"的元素 */
+        .form-group {
+            margin: 15px 0; /* 上下外边距15px，左右0 */
+            padding: 10px; /* 内边距（内容与边框的距离） */
+            background-color: #f8f9fa; /* 浅灰色背景 */
+            border-radius: 5px; /* 圆角边框 */
+        }
+
+        /* 4. ID选择器：选中id为"intro"的元素 */
+        #intro {
+            width: 100%; /* 宽度占满父容器 */
+            border: 1px solid #ddd; /* 边框（粗细、样式、颜色） */
+            border-radius: 4px;
+        }
+
+        /* 5. 按钮样式 */
+        button {
+            padding: 8px 16px;
+            margin-right: 10px;
+            border: none; /* 去掉默认边框 */
+            border-radius: 4px;
+            cursor: pointer; /* 鼠标悬停时显示手型 */
+        }
+
+        /* 提交按钮单独样式 */
+        .submit-btn {
+            background-color: #3498db;
+            color: white; /* 文字颜色白色 */
+        }
+
+        /* 重置按钮单独样式 */
+        .reset-btn {
+            background-color: #e74c3c;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>用户信息表</h1>
+    <form action="#" method="get">
+        <!-- 给每个表单组添加class="form-group" -->
+        <p class="form-group">
+            <label for="username">用户名：</label>
+            <input type="text" id="username" name="username" placeholder="请输入用户名">
+        </p>
+
+        <p class="form-group">
+            <label for="password">密码：</label>
+            <input type="password" id="password" name="password" placeholder="请输入密码">
+        </p>
+
+        <p class="form-group">
+            <label>性别：</label>
+            <input type="radio" id="male" name="gender" value="male">
+            <label for="male">男</label>
+            <input type="radio" id="female" name="gender" value="female">
+            <label for="female">女</label>
+        </p>
+
+        <p class="form-group">
+            <label>爱好：</label>
+            <input type="checkbox" id="hobby1" name="hobby" value="reading">
+            <label for="hobby1">阅读</label>
+            <input type="checkbox" id="hobby2" name="hobby" value="sports">
+            <label for="hobby2">运动</label>
+            <input type="checkbox" id="hobby3" name="hobby" value="coding">
+            <label for="hobby3">编程</label>
+        </p>
+
+        <p class="form-group">
+            <label for="city">所在城市：</label>
+            <select id="city" name="city">
+                <option value="">请选择</option>
+                <option value="beijing">北京</option>
+                <option value="shanghai">上海</option>
+                <option value="guangzhou">广州</option>
+            </select>
+        </p>
+
+        <p class="form-group">
+            <label for="intro">个人简介：</label><br>
+            <textarea id="intro" name="intro" rows="4" cols="30" placeholder="请简单介绍自己"></textarea>
+        </p>
+
+        <p class="form-group">
+            <!-- 给按钮添加class -->
+            <button type="submit" class="submit-btn">提交</button>
+            <button type="reset" class="reset-btn">重置</button>
+        </p>
+    </form>
+</body>
+</html>
